@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "DZIP - Distraction Zipper",
+  "version": "0.3.0",
+  "description": "One click to zip away everything except the main content. Locked until your tasks are done.",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_title": "DZIP — Focus mode",
+    "default_popup": "popup.html"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ]
+}
