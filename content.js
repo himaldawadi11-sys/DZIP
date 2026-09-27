@@ -1,13 +1,10 @@
-// DZIP — Distraction Zipper
-// Focus mode + Task-Locked exit + persistent zips + Isolate mode
-
 const ZIPPED_ATTR = 'data-dzip-zipped';
 const ISOLATE_ATTR = 'data-dzip-isolate-hidden';
 const HOSTNAME = location.hostname;
 const ZIPS_KEY = `dzip_zips_${HOSTNAME}`;
 
 let pickerActive = false;
-let pickerMode = 'zip'; // 'zip' | 'isolate'
+let pickerMode = 'zip';
 let hoveredEl = null;
 let host = null;
 let shadow = null;
@@ -227,7 +224,6 @@ function makeOverlayHost() {
 
 function clearOverlay() { if (overlayHost) { overlayHost.remove(); overlayHost = null; } }
 
-// Stops keys (especially Space) from reaching the page's own listeners (e.g. video play/pause)
 function guardInput(el) {
   ['keydown', 'keyup', 'keypress'].forEach(evt => {
     el.addEventListener(evt, e => e.stopPropagation());
@@ -355,7 +351,7 @@ function renderFloatButton() {
 (async function init() {
   focusState = await getFocusState();
   await reapplyZips();
-  renderFloatButton(); // always visible, on every page
+  renderFloatButton();
 })();
 
 chrome.runtime.onMessage.addListener(msg => {
